@@ -71,6 +71,7 @@ var BasicPhysicsObj = Class.extend({
             var tempBody = b.m_next;
             this.world.DestroyBody(b);
             b = tempBody;
+            tempBody=null;//标记为空 释放内存
         }
     },
     removeAllJoint:function(){

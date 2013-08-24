@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
-               BuildableName = "html5Demo.app"
-               BlueprintName = "html5Demo"
-               ReferencedContainer = "container:html5Demo.xcodeproj">
+               BuildableName = "Html5Demo.app"
+               BlueprintName = "Html5Demo"
+               ReferencedContainer = "container:Html5Demo.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
-            BuildableName = "html5Demo.app"
-            BlueprintName = "html5Demo"
-            ReferencedContainer = "container:html5Demo.xcodeproj">
+            BuildableName = "Html5Demo.app"
+            BlueprintName = "Html5Demo"
+            ReferencedContainer = "container:Html5Demo.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -52,9 +52,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
-            BuildableName = "html5Demo.app"
-            BlueprintName = "html5Demo"
-            ReferencedContainer = "container:html5Demo.xcodeproj">
+            BuildableName = "Html5Demo.app"
+            BlueprintName = "Html5Demo"
+            ReferencedContainer = "container:Html5Demo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -70,9 +70,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1D6058900D05DD3D006BFB54"
-            BuildableName = "html5Demo.app"
-            BlueprintName = "html5Demo"
-            ReferencedContainer = "container:html5Demo.xcodeproj">
+            BuildableName = "Html5Demo.app"
+            BlueprintName = "Html5Demo"
+            ReferencedContainer = "container:Html5Demo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
