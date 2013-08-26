@@ -1,21 +1,10 @@
-/*
-    CREATE BY HZZ ON 2013.8.25
-    
-*/
-var RevoluteJoint = Class.extend({
+
+var TapScreen = Class.extend({
     init:function(gs,physicPlugin){
-        //添加文字提示
-        this.createRevoluteJointLabel(gs);
-        var tempRect=this.createRect(20,20,0,100,180,gs,physicPlugin);
-        physicPlugin.createRevoluteJoint(tempRect.body,
-                                         tempRect.body.m_position.x,
-                                         tempRect.body.m_position.y,100);
-        var tempRect2=this.createRect(20,20,0,200,150,gs,physicPlugin);
-        physicPlugin.createRevoluteJoint(tempRect2.body,
-                                         tempRect2.body.m_position.x,
-                                         tempRect2.body.m_position.y,100);
-        var tempRect3=this.createBall(10,350,170,gs,physicPlugin);
-        physicPlugin.createRevoluteJoint(tempRect3.body,350,70,0);
+        //产生提示
+        this.createLabel(gs);
+        //产生圆球
+        this.createRect(15,15,0,200,100,gs,physicPlugin);
     },
     createBall:function(radius,posX,posY,gs,physicPlugin){
         var r = radius;
@@ -36,14 +25,13 @@ var RevoluteJoint = Class.extend({
                 c.fill();
                 c.stroke();
             }
-        }
+          }
           
-        gs.addEntity(ball);     
-        return ball;    
-    },       
-    createRect:function(width,height,angle,posX,posY,gs,physicPlugin) {
+          gs.addEntity(ball);     
+          return ball;      
+     },
+     createRect:function(width,height,angle,posX,posY,gs,physicPlugin) {
         var c = gs.random(100, 200);
-    
         var entity = {
             "w":width,
             "h":height,
@@ -76,14 +64,14 @@ var RevoluteJoint = Class.extend({
         }
         gs.addEntity(entity);
         return entity;
-    },
-    createRevoluteJointLabel:function(gs){
-        var s = new Sprite(["center", "center"], {"default": [["Resources/RevoluteJoint.png", 3]]}, false, 1.0);
+     },
+     createLabel:function(gs){
+        var s = new Sprite(["center", "center"], {"default": [["Resources/TapScreen.png", 3]]}, false, 1.0);
         var sprite={
             "draw":function(c){
                 s.draw(c, [gs.width/2, gs.height * 0.25]);
             }
         };
-        gs.addEntity(sprite);
-    }
+        gs.addEntity(sprite); 
+    }                    
 });

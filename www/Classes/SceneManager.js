@@ -4,7 +4,11 @@
     
     产生方法:SceneManager_Singleton.sharedManager(gs); 必须单例 并且传入
     JSGameSoup的滑板 JSGameSoup类
+    支持触摸事件
+    具体还有一个就是转换场景的方法:replaceScene 参数是一个是gs 还有一个是转换到那个场景的
+    代号
 */
+
 //产生单例
 var SceneManager_Singleton=(function(){
     var _sharedManager=null;
@@ -63,7 +67,7 @@ var SceneManager = Class.extend({
          //初始化场景
          var scene;
          if(scene_state===0){
-            scene=new BasicScene(gs,physicPlugin);
+            scene=new TapScreen(gs,physicPlugin);
          }else if(scene_state===1){
             scene=new RevoluteJoint(gs,physicPlugin);
          }
@@ -74,7 +78,7 @@ var SceneManager = Class.extend({
         var touchEvent = {
             "priority":1,
             "pointerDown":function(){
-                scene.createBall(gs.random(10, 30),
+                scene.createBall(gs.random(10,30),
                                  gs.pointerPosition[0],
                                  gs.pointerPosition[1],
                                  gs,
@@ -88,6 +92,7 @@ var SceneManager = Class.extend({
         return touchEvent;
     },
     replaceScene:function(gs,physicPlugin,scene_state){
+        //JSGameSoup清除对象
         gs.clearEntities();
         //清除所有的body
         physicPlugin.removeAllBodys();

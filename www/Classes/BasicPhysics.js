@@ -45,8 +45,6 @@ var BasicPhysicsObj = Class.extend({
     },
     //产生圆形刚体
     createBodyInCircle:function(radius,posX,posY){
-        console.debug(this);
-        
         var b2Body = new b2BodyDef();
 
         var circle = new b2CircleDef();
@@ -60,8 +58,19 @@ var BasicPhysicsObj = Class.extend({
         return this.world.CreateBody(b2Body);
     },
     //产生方形刚体
-    createBodyInRect:function(){
+    createBodyInRect:function(width,height,posX,posY){
+        var body = new b2BodyDef();
         
+        var rect = new b2BoxDef();
+        rect.density = 1;
+        rect.friction = 0.1;
+        rect.restitution = 0.9;
+        rect.extents.Set(width,height);
+        
+        body.AddShape(rect);
+        body.position.Set(posX,posY);
+        console.debug(body);
+        return this.world.CreateBody(body);
     },
     //删除所有刚体
     removeAllBodys:function(){
@@ -83,13 +92,20 @@ var BasicPhysicsObj = Class.extend({
             j = tempJoint;
         }
     },
-    //产生距离关节
-    createRevoluteJoint:function(body,x,y){
+    //产生旋转关节
+    createRevoluteJoint:function(body,x,y,torque){
         var jointDef=new b2RevoluteJointDef();
         jointDef.anchorPoint.Set(x,y);
         jointDef.body1=this.world.GetGroundBody();
         jointDef.body2=body;
+        if(torque != 0){
+            jointDef.motorSpeed=Math.PI*-1.0;
+            jointDef.motorTorque=50000000000.0;
+            jointDef.enableMotor=true;
+        }
+        
         var jointBody=this.world.CreateJoint(jointDef);
+        console.debug(jointBody);
         return jointBody;
     }
 });
