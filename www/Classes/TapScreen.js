@@ -48,7 +48,8 @@ var TapScreen = Class.extend({
             },
             "draw":function(c){
             	// draw our circle
-			    c.strokeStyle = this.color;
+			    c.strokeStyle = 'rgba(0, 0, 0, 1.0)';
+                c.fillStyle = this.color;
 			    gs.polygon(this.poly);
             },
             "update":function(c){ 
@@ -59,7 +60,6 @@ var TapScreen = Class.extend({
 				    this.poly[n] = [this.points[n][0] * Math.cos(this.angle) - this.points[n][1] * Math.sin(this.angle) + this.x, 
                                     this.points[n][0] * Math.sin(this.angle) + this.points[n][1] * Math.cos(this.angle) + this.y];
 			     }
-			     this.color = 'rgba(255, 255, 255, 1.0)';
             }
         }
         gs.addEntity(entity);

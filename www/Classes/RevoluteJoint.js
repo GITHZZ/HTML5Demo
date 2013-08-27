@@ -13,9 +13,10 @@ var RevoluteJoint = Class.extend({
         var tempRect2=this.createRect(20,20,0,200,150,gs,physicPlugin);
         physicPlugin.createRevoluteJoint(tempRect2.body,
                                          tempRect2.body.m_position.x,
-                                         tempRect2.body.m_position.y,100);
-        var tempRect3=this.createBall(10,350,170,gs,physicPlugin);
-        physicPlugin.createRevoluteJoint(tempRect3.body,350,70,0);
+                                         tempRect2.body.m_position.y,0);
+        var ball=this.createBall(10,350,120,gs,physicPlugin);
+        physicPlugin.createRevoluteJoint(ball.body,350,70,0);
+        this.createLinePointToBody(350,70,ball.body,gs); 
     },
     createBall:function(radius,posX,posY,gs,physicPlugin){
         var r = radius;
@@ -60,7 +61,8 @@ var RevoluteJoint = Class.extend({
             },
             "draw":function(c){
             	// draw our circle
-			    c.strokeStyle = this.color;
+			    c.strokeStyle = 'rgba(0, 0, 0, 1.0)';
+                c.fillStyle = this.color;
 			    gs.polygon(this.poly);
             },
             "update":function(c){ 
@@ -71,11 +73,25 @@ var RevoluteJoint = Class.extend({
 				    this.poly[n] = [this.points[n][0] * Math.cos(this.angle) - this.points[n][1] * Math.sin(this.angle) + this.x, 
                                     this.points[n][0] * Math.sin(this.angle) + this.points[n][1] * Math.cos(this.angle) + this.y];
 			     }
-			     this.color = 'rgba(255, 255, 255, 1.0)';
             }
         }
         gs.addEntity(entity);
         return entity;
+    },
+    //划线
+    createLinePointToBody:function(posX,posY,body,gs){
+        var line = {
+            "body":body,
+            "x":posX,
+            "y":posY,
+            "draw":function(c){
+                c.moveTo(this.x,this.y);
+                c.lineTo(this.body.m_position.x,
+                         this.body.m_position.y);
+                c.stroke();
+            }
+        }
+        gs.addEntity(line);
     },
     createRevoluteJointLabel:function(gs){
         var s = new Sprite(["center", "center"], {"default": [["Resources/RevoluteJoint.png", 3]]}, false, 1.0);

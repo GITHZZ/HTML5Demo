@@ -5,8 +5,7 @@
     产生方法:SceneManager_Singleton.sharedManager(gs); 必须单例 并且传入
     JSGameSoup的滑板 JSGameSoup类
     支持触摸事件
-    具体还有一个就是转换场景的方法:replaceScene 参数是一个是gs 还有一个是转换到那个场景的
-    代号
+    具体还有一个就是转换场景的方法:replaceScene 参数是一个是gs 还有一个是转换到那个场景的代号
 */
 
 //产生单例
@@ -49,11 +48,11 @@ var SceneManager = Class.extend({
         });
         //按下前一个
         $("#prep").click(function(){
+            scene_state=scene_state-1;
             if(scene_state<0){
                 scene_state=scene_state+1;
                 return;
             }
-            scene_state=scene_state-1;
             secne.replaceScene(gs,physicPlugin,scene_state);
         });
     },
