@@ -5,8 +5,6 @@
     说明:本类中主要提供方便产生物理效果等方法 
     init方法主要是初始化AABB,最小坐标-200,200
     update方法主要结合了JSGameSoup的循环,如果不是JsGameSoup框架就要重写这个方法
-    removeAllBody连边缘也会删除掉,所以removeAllBody之后记得要重写调用initWithEdge来
-    重写初始化边框(会改善的)
 */
 
 var BasicPhysicsObj = Class.extend({
@@ -69,23 +67,25 @@ var BasicPhysicsObj = Class.extend({
         
         body.AddShape(rect);
         body.position.Set(posX,posY);
-        console.debug(body);
         return this.world.CreateBody(body);
     },
     //删除所有刚体
     removeAllBodys:function(){
         //清除所有body
-        var b =this.world.m_bodyList;
+        var b = this.world.m_bodyList;
         while(b != null){
             var tempBody = b.m_next;
             this.world.DestroyBody(b);
             b = tempBody;
             tempBody=null;//标记为空 释放内存
         }
+        
+        b = null;
+        this.world.m_bodyList = null;
     },
     removeAllJoint:function(){
         //清除所有关节
-        var j=this.world.m_jointList;
+        var j = this.world.m_jointList;
         while(j != null){
             var tempJoint = j.m_next;
             this.world.DestroyJoint(j);
@@ -94,17 +94,17 @@ var BasicPhysicsObj = Class.extend({
     },
     //产生旋转关节
     createRevoluteJoint:function(body,x,y,torque){
-        var jointDef=new b2RevoluteJointDef();
+        var jointDef = new b2RevoluteJointDef();
         jointDef.anchorPoint.Set(x,y);
-        jointDef.body1=this.world.GetGroundBody();
-        jointDef.body2=body;
+        jointDef.body1 = this.world.GetGroundBody();
+        jointDef.body2 = body;
         if(torque != 0){
-            jointDef.motorSpeed=Math.PI*-1.0;
-            jointDef.motorTorque=50000000000.0;
-            jointDef.enableMotor=true;
+            jointDef.motorSpeed = Math.PI*-1.0;
+            jointDef.motorTorque = torque;
+            jointDef.enableMotor = true;
         }
         
-        var jointBody=this.world.CreateJoint(jointDef);
+        var jointBody = this.world.CreateJoint(jointDef);
         console.debug(jointBody);
         return jointBody;
     }

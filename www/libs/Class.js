@@ -41,9 +41,10 @@
         for(var name in prop){
             if(prop.hasOwnProperty(name)){
                 //如果此类是继承自父类baseClass而且和父类存在同名函数[name]
+                //如果该方法是函数(超类)
                 if(baseClass&&
-                   typeof(prop[name]=="function")&&
-                   typeof(Template.prototype[name]=="function")&&
+                   typeof(prop[name])=="function"&&
+                   typeof(Template.prototype[name])=="function"&&
                    /\bsuper\b/.test(prop[name])){
                     Template.prototype[name]=(function(name,fn){
                         return function(){

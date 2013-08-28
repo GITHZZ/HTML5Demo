@@ -14,7 +14,7 @@ var SceneManager_Singleton=(function(){
     return {
         sharedManager:function(gs){
             if(!_sharedManager){
-                _sharedManager=new SceneManager(gs);
+                _sharedManager = new SceneManager(gs);
             }
             return _sharedManager;
         }
@@ -24,13 +24,13 @@ var SceneManager_Singleton=(function(){
 var SceneManager = Class.extend({
     init:function(gs){
         //初始化物理插件
-        var physicPlugin=new BasicPhysicsObj(gs.width, gs.height);
+        var physicPlugin = new BasicPhysicsObj(gs.width, gs.height);
         //标示
-        var scene_state=0;
+        var scene_state = 0;
         //初始化场景
         this.initScene(gs,physicPlugin,scene_state);
         //绑定层
-        var secne=this;
+        var secne = this;
         //按钮事件
         $("#refresh").click(function(){
             //清除所有渲染对象
@@ -48,9 +48,9 @@ var SceneManager = Class.extend({
         });
         //按下前一个
         $("#prep").click(function(){
-            scene_state=scene_state-1;
+            scene_state = scene_state-1;
             if(scene_state<0){
-                scene_state=scene_state+1;
+                scene_state = scene_state+1;
                 return;
             }
             secne.replaceScene(gs,physicPlugin,scene_state);
@@ -65,9 +65,9 @@ var SceneManager = Class.extend({
 	     });
          //初始化场景
          var scene;
-         if(scene_state===0){
+         if(scene_state === 0){
             scene=new TapScreen(gs,physicPlugin);
-         }else if(scene_state===1){
+         }else if(scene_state === 1){
             scene=new RevoluteJoint(gs,physicPlugin);
          }
          //游戏触控事件
@@ -90,12 +90,13 @@ var SceneManager = Class.extend({
     
         return touchEvent;
     },
+    //场景替换
     replaceScene:function(gs,physicPlugin,scene_state){
         //JSGameSoup清除对象
         gs.clearEntities();
         //清除所有的body
         physicPlugin.removeAllBodys();
-        physicPlugin=new BasicPhysicsObj(gs.width, gs.height)
+        physicPlugin = new BasicPhysicsObj(gs.width, gs.height)
         //重新初始化场景
         physicPlugin.initWithEdge(gs.width, gs.height);
         //初始化场景
